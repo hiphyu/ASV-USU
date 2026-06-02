@@ -1,0 +1,668 @@
+<?xml version="1.0" ?>
+<robot name="catamaaran1" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+<xacro:property name="body_color" value="Gazebo/Silver" />
+
+<!-- <gazebo>
+    <plugin filename="libSurface.so" name="vrx::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>2.0</hull_length>
+      <hull_radius>0.33</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.6 1.03 0</point>
+        <point>-1.4 1.03 0</point>
+      </points>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libSurface.so" name="vrx::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>2.0</hull_length>
+      <hull_radius>0.33</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.6 -1.03 0</point>
+        <point>-1.4 -1.03 0</point>
+      </points>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-hydrodynamics-system" name="gz::sim::systems::Hydrodynamics">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU> <yDotV>0.0</yDotV> <nDotR>0.0</nDotR>
+      <xU>-40.0</xU>     <xAbsU>-50.0</xAbsU>
+      <yV>-30.0</yV>     <yAbsV>0.0</yAbsV>
+      <zW>-150.0</zW>
+      <kP>-300.0</kP>     <mQ>-300.0</mQ>     <nR>-1000.0</nR> <nAbsR>-35.0</nAbsR>
+    </plugin>
+  </gazebo> -->
+
+<gazebo>
+    <plugin filename="libSurface.so" name="vrx::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>4.7</hull_length>
+      <hull_radius>0.58</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.6 1.03 0</point>
+        <point>-1.4 1.03 0</point>
+      </points>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="libSurface.so" name="vrx::Surface">
+      <link_name>base_link</link_name>
+      <hull_length>4.7</hull_length>
+      <hull_radius>0.58</hull_radius>
+      <fluid_level>0</fluid_level>
+      <points>
+        <point>0.6 -1.03 0</point>
+        <point>-1.4 -1.03 0</point>
+      </points>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-hydrodynamics-system" name="gz::sim::systems::Hydrodynamics">
+      <link_name>base_link</link_name>
+      <xDotU>0.0</xDotU> <yDotV>0.0</yDotV> <nDotR>0.0</nDotR>
+      <xU>-51.3</xU> <xAbsU>-72.4</xAbsU>
+      <yV>-40.0</yV> <yAbsV>0.0</yAbsV>
+      <zW>-100.0</zW>
+      <kP>-100.0</kP> <mQ>-100.0</mQ> <nR>-600.0</nR> <nAbsR>-25.0</nAbsR>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <robot_base_frame>base_link</robot_base_frame>
+      <odom_frame>/odom</odom_frame>
+      <odom_topic>odometry</odom_topic>
+      <dimensions>3</dimensions>
+      <tf_topic>tf</tf_topic>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-thruster-system" name="gz::sim::systems::Thruster">
+      <joint_name>propeller_left</joint_name>
+      <thrust_coefficient>50.0</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <!-- <topic>/world/KKI/model/wamv/left/joint/cmd_thrust</topic> -->
+      <!-- <odom_topic>odom</odom_topic> -->
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-thruster-system" name="gz::sim::systems::Thruster">
+      <joint_name>propeller_right</joint_name>
+      <thrust_coefficient>50.0</thrust_coefficient>
+      <fluid_density>1000</fluid_density>
+      <propeller_diameter>0.2</propeller_diameter>
+      <velocity_control>true</velocity_control>
+      <!-- <topic>/world/KKI/model/wamv/right/joint/cmd_thrust</topic> -->
+      <!-- <odom_topic>odom</odom_topic> -->
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>thruster_left</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>/world/KKI/model/wamv/left/thruster/joint/cmd_pos</topic>
+      <!-- <odom_topic>odom</odom_topic> -->
+      <p>100000.0</p> 
+      <i>0.1</i>      
+      <d>1000.0</d>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin filename="gz-sim-joint-position-controller-system" name="gz::sim::systems::JointPositionController">
+      <joint_name>thruster_right</joint_name>
+      <use_velocity_commands>true</use_velocity_commands>
+      <topic>/world/KKI/model/wamv/right/thruster/joint/cmd_pos</topic>
+      <!-- <odom_topic>odom</odom_topic> -->
+      <p>100000.0</p> 
+      <i>0.1</i>      
+      <d>1000.0</d>
+    </plugin>
+  </gazebo>
+
+  <!-- <gazebo>
+    <plugin name="ArduPilotPlugin" filename="libardupilot_gz_gazebo.so">
+      Port settings
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9003</fdm_port_in>
+      <fdm_port_out>9002</fdm_port_out>
+      <model>rover</model>
+      <lock_step>1</lock_step>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+
+      Coordinate transform (Gazebo ENU ↔ ArduPilot NED)
+      <modelXYZToAirplaneXForwardZDown degrees="true">0 0 0 180 0 0</modelXYZToAirplaneXForwardZDown>
+      <gazeboXYZToNED degrees="true">0 0 0 180 0 90</gazeboXYZToNED>
+
+      Sensors
+      <imuName>base_link::imu_sensor</imuName>
+      <gpsName>Holybro_GPS_1::gps_sensor</gpsName>
+
+      Thruster controls
+      <control channel="0">
+        <jointName>propeller_left</jointName>
+        <useForce>1</useForce>
+        <multiplier>50.0</multiplier>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+      </control>
+
+      <control channel="1">
+        <jointName>propeller_right</jointName>
+        <useForce>1</useForce>
+        <multiplier>50.0</multiplier>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+      </control>
+    </plugin>
+  </gazebo> -->
+
+  <!-- <gazebo>
+    <plugin name="ArduPilotPlugin" filename="libArduPilotPlugin.so">
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <fdm_port_out>9003</fdm_port_out>
+      <model>gazebo-rover</model>
+      <gazebo>gz</gazebo>
+      <imuName>imu_sensor</imuName>
+    </plugin>
+  </gazebo> -->
+
+  <!-- <gazebo reference="base_link">
+    <sensor name="imu_sensor" type="imu">
+      <update_rate>100</update_rate>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0</mean>
+              <stddev>0.001</stddev>
+              <bias_mean>0.0001</bias_mean>
+        <bias_stddev>0.00005</bias_stddev>
+        <dynamic_bias_stddev>0.00001</dynamic_bias_stddev>
+        <dynamic_bias_correlation_time>3600</dynamic_bias_correlation_time>
+            </noise>
+          </x>
+          <y><noise type="gaussian"><mean>0</mean><stddev>0.001</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0</mean><stddev>0.001</stddev></noise></z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x><noise type="gaussian"><mean>0</mean><stddev>0.04</stddev></noise></x>
+          <y><noise type="gaussian"><mean>0</mean><stddev>0.04</stddev></noise></y>
+          <z><noise type="gaussian"><mean>0</mean><stddev>0.04</stddev></noise></z>
+        </linear_acceleration>
+      </imu>
+    </sensor>
+  </gazebo> -->
+  <gazebo reference="base_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>1</always_on>
+      <update_rate>100</update_rate>
+      <enable_orientation>true</enable_orientation>
+
+      <imu>
+        <angular_velocity>
+
+          <!-- Sumbu X (Roll) -->
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.000873</stddev>
+            </noise>
+          </x>
+          
+          <!-- Sumbu Y (Pitch) -->
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.000873</stddev>
+            </noise>
+          </y>
+
+          <!-- Sumbu Z (Yaw) -->
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.000873</stddev>
+            </noise>
+          </z>
+
+        </angular_velocity>
+
+        <linear_acceleration>
+
+          <!-- Sumbu X -->
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.03924</stddev>
+            </noise>
+          </x>
+
+          <!-- Sumbu Y -->
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.03924</stddev>
+            </noise>
+          </y>
+
+          <!-- Sumbu Z -->
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.03924</stddev>
+            </noise>
+          </z>
+
+        </linear_acceleration>
+
+      </imu>
+    </sensor>
+   </gazebo> 
+
+  <!-- <gazebo reference="kamera_1">
+    <sensor name="camera_sensor" type="camera">
+      <update_rate>30.0</update_rate>
+      <camera name="camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>680</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>400</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo> -->
+
+  <!-- <gazebo reference="kamera_kiri">
+    <sensor name="kamera_kiri_sensor" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>30</update_rate>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="kamera_kanan">
+    <sensor name="kamera_kanan_sensor" type="camera">
+      <pose>0 0 0 0 0 0</pose>
+      <update_rate>30</update_rate>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+      <camera>
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo> -->
+
+  <!-- ROS 2 Bridge Plugin -->
+  <!-- <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <parameters>$(find catamaaran1_description)/config/ros2_controllers.yaml</parameters>
+    </plugin>
+  </gazebo> -->
+
+  <gazebo reference="kamera_bawah_1">
+    <sensor name="camera_sensor_bawah" type="camera">
+      <update_rate>30.0</update_rate>
+      <camera name="camera_bawah">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>1280</width>
+          <height>720</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.05</near>
+          <far>400</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame.
+                 That pixel's noise value is added to each of its color
+                 channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+    </sensor>
+  </gazebo>
+
+  <!-- IMU Publisher (ROS2) -->
+  <!-- <gazebo>
+    <plugin filename="libros_gz_sim_imu_system.so" name="ros_imu">
+      <ros>
+        <namespace>/boat</namespace>
+        <topic>imu/data</topic>
+      </ros>
+      <frame_id>imu_link</frame_id>
+      <update_rate>50</update_rate>
+    </plugin>
+  </gazebo> -->
+
+  <!-- GPS Publisher (ROS2) -->
+
+  <!-- <gazebo reference="Holybro_GPS_1">
+    <sensor name="gps_sensor" type="gps">
+      <update_rate>5</update_rate>
+      <always_on>true</always_on>
+      <gps/>
+    </sensor>
+  </gazebo> -->
+
+  <gazebo reference="Holybro_GPS_1">
+    <sensor name="gps_sensor" type="navsat">
+      <update_rate>10</update_rate>
+      <always_on>true</always_on>
+
+      <navsat>
+        <!-- Position noise (meters) -->
+        <position_sensing>
+          <horizontal>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.0000045</stddev>   TS100 quad-mode: ~0.5 m
+            </noise>
+          </horizontal>
+          <vertical>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.0000090</stddev>
+            </noise>
+          </vertical>
+        </position_sensing>
+
+        <!-- Velocity noise (m/s) -->
+        <velocity_sensing>
+          <horizontal>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.10</stddev>  <!-- TS100: 0.1 m/s -->
+            </noise>
+          </horizontal>
+          <vertical>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>0.10</stddev>
+            </noise>
+          </vertical>
+        </velocity_sensing>
+      </navsat>
+    </sensor>
+  </gazebo>
+
+<!-- <gazebo>
+  <plugin name="control" filename="libgazebo_ros_control.so"/>
+</gazebo> -->
+<gazebo reference="base_link">
+  <material>Gazebo/Turquoise</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+  <gravity>true</gravity>
+</gazebo>
+
+<gazebo reference="propeller_left_1">
+  <material>Gazebo/Blue</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="propeller_right_1">
+  <material>Gazebo/Blue</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="thruster_left_1">
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="thruster_right_1">
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="mounting_thruster_right_1">
+  <material>Gazebo/Purple</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="mounting_thruster_left_1">
+  <material>Gazebo/Purple</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="radar_1">
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="kamera_bawah_1">
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<!-- <gazebo reference="lidar_kanan_2">
+  <sensor name="lidar_kanan" type="gpu_lidar">
+    <update_rate>10</update_rate>
+    <topic>/scan_right</topic>
+    <visualize>true</visualize>
+    <always_on>true</always_on>
+    <pose>0 0 0 0 0 0</pose>
+    <ray>
+      <visibility_mask>7</visibility_mask>
+      <scan>
+        <horizontal>
+          <samples>50</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
+        </horizontal>
+        <vertical>
+          <samples>50</samples>
+          <resolution>1</resolution>
+          <min_angle>-0.523599</min_angle>
+          <max_angle>0.523599</max_angle>
+        </vertical>
+      </scan>
+      <range>
+        <min>0.03</min>
+        <max>4.5</max>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+  </sensor>
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="lidar_kiri_1">
+  <sensor name="lidar_kiri" type="gpu_lidar">
+    <update_rate>10</update_rate>
+    <topic>/scan_left</topic>
+    <visualize>1</visualize>
+    <always_on>1</always_on>
+    <pose>0 0 0 0 0 0</pose>
+    <lidar>
+      <visibility_mask>1</visibility_mask>
+      <scan>
+        <horizontal>
+          <samples>50</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
+        </horizontal>
+        <vertical>
+          <samples>20</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
+        </vertical>
+      </scan>
+      <range>
+        <min>0.5</min>
+        <max>12.0</max>
+        <resolution>0.005</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </lidar>
+  </sensor>
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="lidar_tengah_1">
+  <sensor name="lidar_front" type="gpu_lidar">
+    <update_rate>10</update_rate>
+    <topic>/scan</topic>
+    <visualize>1</visualize>
+    <always_on>1</always_on>
+    <pose>0 0 0 0 0 0</pose>
+    <lidar>
+      <visibility_mask>1</visibility_mask>
+      <scan>
+        <horizontal>
+          <samples>50</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
+        </horizontal>
+        <vertical>
+          <samples>20</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57</min_angle>
+          <max_angle>1.57</max_angle>
+        </vertical>
+      </scan>
+      <range>
+        <min>0.5</min>
+        <max>12.0</max>
+        <resolution>0.005</resolution>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </lidar>
+  </sensor> -->
+  
+  <!-- <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo> -->
+
+<!-- <gazebo reference="kamera_1">
+  <material>Gazebo/White</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo> -->
+
+<gazebo reference="Holybro_GPS_1">
+  <material>Gazebo/Black</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+<gazebo reference="433_1">
+  <material>Gazebo/White</material>
+  <mu1>0.2</mu1>
+  <mu2>0.2</mu2>
+  <selfCollide>true</selfCollide>
+</gazebo>
+
+</robot>

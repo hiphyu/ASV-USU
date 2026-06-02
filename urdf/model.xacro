@@ -1,0 +1,548 @@
+<?xml version="1.0" ?>
+<robot name="catamaaran1" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find catamaaran1_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find catamaaran1_description)/urdf/catamaaran.trans" />
+<xacro:include filename="$(find catamaaran1_description)/urdf/catamaaran.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.1809808327325102 -0.11753677955957842 1.3724485576316436" rpy="0 0 0"/>
+    <mass value="180"/>
+    <inertia ixx="400" iyy="800" izz="1000" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="mounting_thruster_left_1">
+  <inertial>
+  <origin xyz="-0.007036779542247906 -0.0001684854624528498 0.17618377725988837" rpy="0 0 0"/>
+    <!-- <origin xyz="-0.0070369271617178875 -0.00016221277159012004 0.6761837772598884" rpy="0 0 0"/> -->
+    <mass value="7.5"/>
+    <inertia ixx="0.779787" iyy="0.785316" izz="0.019746" ixy="-0.000128" iyz="-0.000608" ixz="-0.026321"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.750634 -1.630515 0.928999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/mounting_thruster_left_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/mounting_thruster_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.750634 -1.630515 0.928999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/mounting_thruster_left_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/mounting_thruster_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="thruster_left_1">
+  <inertial>
+    <origin xyz="-0.02990559573990703 0.0001506538066273766 -0.24281716954516158" rpy="0 0 0"/>
+    <mass value="7.5"/>
+    <inertia ixx="4.381678" iyy="3.99275" izz="3.876947" ixy="0.015304" iyz="0.000111" ixz="-0.024649"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.771849 -1.630025 0.523999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/thruster_left_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/thruster_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.771849 -1.630025 0.523999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/thruster_left_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/thruster_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="propeller_left_1">
+  <inertial>
+    <origin xyz="-0.05888803483698446 -0.001360067923009911 -1.477481476941378e-06" rpy="0 0 0"/>
+    <mass value="0.5"/>
+    <inertia ixx="0.091232" iyy="0.05931" izz="0.059319" ixy="0.000738" iyz="-1.1e-05" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.752911 -1.631946 0.77031" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/propeller_left__1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/baling_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.752911 -1.631946 0.77031" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/propeller_left__1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/baling_left_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="mounting_thruster_right_1">
+  <inertial>
+    <origin xyz="-0.00703692716172033 -0.00016221277159034209 0.6711837772598872" rpy="0 0 0"/>
+    <mass value="7.55"/>
+    <inertia ixx="0.779787" iyy="0.785316" izz="0.019746" ixy="-0.000128" iyz="-0.000608" ixz="-0.026321"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.750634 1.869485 0.928999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/mounting_thruster_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/mounting_thruster_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.750634 1.869485 0.928999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/mounting_thruster_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/mounting_thruster_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="thruster_right_1">
+  <inertial>
+    <origin xyz="-0.05112059587628415 -0.0003393462979845996 -0.24281716954516253" rpy="0 0 0"/>
+    <mass value="7.5"/>
+    <inertia ixx="4.381678" iyy="3.99275" izz="3.876947" ixy="0.015304" iyz="0.000111" ixz="-0.024649"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.750634 1.869485 0.528999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/thruster_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/thruster_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.750634 1.869485 0.528999" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/thruster_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/thruster_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="propeller_right_1">
+  <inertial>
+    <origin xyz="-0.05888803497336159 -0.0013600680276222299 -1.4774814778850676e-06" rpy="0 0 0"/>
+    <mass value="0.5"/>
+    <inertia ixx="0.091232" iyy="0.05931" izz="0.059319" ixy="0.000738" iyz="-1.1e-05" ixz="1e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="1.752911 1.868054 0.77531" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/propeller_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/baling_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="1.752911 1.868054 0.77531" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/propeller_right_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/baling_right_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="radar_1">
+  <inertial>
+    <origin xyz="0.16942516242848513 -0.00017191411106458332 0.9330228227579171" rpy="0 0 0"/>
+    <mass value="10.038659092143945"/>
+    <inertia ixx="2.903659" iyy="2.839491" izz="0.119756" ixy="2.3e-05" iyz="0.002242" ixz="-0.066831"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.21 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/radar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-0.21 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/radar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<!-- <link name="lidar_kanan_2">
+  <inertial>
+    <origin xyz="-0.0866711998560099 -0.0006773226270226917 0.5671550783560482" rpy="0 0 0"/>
+    <mass value="3.4790843027207785"/>
+    <inertia ixx="0.011084" iyy="0.00255" izz="0.010374" ixy="6.2e-05" iyz="1e-06" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-2.449366 0.90139 -0.400504" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_kanan_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-2.449366 0.90139 -0.400504" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_kanan_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_kiri_1">
+  <inertial>
+    <origin xyz="-0.07667119985601101 -0.0006773226270326838 0.5671552397806241" rpy="0 0 0"/>
+    <mass value="3.4790843027207785"/>
+    <inertia ixx="0.011084" iyy="0.00255" izz="0.010374" ixy="6.2e-05" iyz="1e-06" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-2.449366 -0.69861 -0.400504" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_kiri_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-2.449366 -0.69861 -0.400504" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_kiri_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link> -->
+
+<!-- <link name="lidar_tengah_1">
+  <inertial>
+    <origin xyz="-0.020670447654669744 -0.0006768803680023694 0.5391549772821327" rpy="0 0 0"/>
+    <mass value="3.4790843027207785"/>
+    <inertia ixx="0.011084" iyy="0.00255" izz="0.010374" ixy="6.2e-05" iyz="1e-06" ixz="-3.2e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1.380509 0.1 -1.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_tengah_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-1.380509 0.1 -1.025" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/lidar_tengah_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link> -->
+
+<!-- <link name="kamera_1">
+  <inertial>
+    <origin xyz="-0.06751307113913829 2.660542099186536e-06 0.6041868739623273" rpy="0 0 0"/>
+    <mass value="5.677374885593501"/>
+    <inertia ixx="0.096548" iyy="0.052242" izz="0.08517" ixy="-1e-06" iyz="0.0" ixz="-0.006259"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1.185 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-1.185 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link> -->
+
+<!-- Kamera Kiri (yang sudah ada, dimodifikasi sedikit) -->
+<!-- <link name="kamera_kiri">
+  <inertial>
+    <origin xyz="-0.06751307113913829 2.660542099186536e-06 0.6041868739623273" rpy="0 0 0"/>
+    <mass value="5.677374885593501"/>
+    <inertia ixx="0.096548" iyy="0.052242" izz="0.08517" ixy="-1e-06" iyz="0.0" ixz="-0.006259"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1.185 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-1.185 0.1 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="kamera_kiri_joint" type="fixed">
+  <origin xyz="1.185 -0.06 1.875" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="kamera_kiri"/>
+</joint> -->
+
+<!-- Kamera Kanan (stereo pair) -->
+<!-- <link name="kamera_kanan">
+  <inertial>
+    <origin xyz="-0.06751307113913829 2.660542099186536e-06 0.6041868739623273" rpy="0 0 0"/>
+    <mass value="5.677374885593501"/>
+    <inertia ixx="0.096548" iyy="0.052242" izz="0.08517" ixy="-1e-06" iyz="0.0" ixz="-0.006259"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1.185 0.02 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-1.185 0.02 -1.275" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="kamera_kanan_joint" type="fixed">
+  <origin xyz="1.185 0.02 1.875" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="kamera_kanan"/>
+</joint>
+
+<link name="kamera_kiri_optical"/>
+<joint name="kamera_kiri_optical_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+  <parent link="kamera_kiri"/>
+  <child link="kamera_kiri_optical"/>
+</joint>
+
+<link name="kamera_kanan_optical"/>
+<joint name="kamera_kanan_optical_joint" type="fixed">
+  <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+  <parent link="kamera_kanan"/>
+  <child link="kamera_kanan_optical"/>
+</joint> -->
+
+<link name="Holybro_GPS_1">
+  <inertial>
+    <origin xyz="-0.0009928043786558982 -3.05415043935775e-07 0.03500834400833508" rpy="0 0 0"/>
+    <mass value="5.946183506426088"/>
+    <inertia ixx="0.064939" iyy="0.067468" izz="0.122739" ixy="0.0" iyz="0.0" ixz="2e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.6975 0.1 -1.875" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/Holybro_GPS_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/Holybro_GPS_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-0.6975 0.1 -1.875" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/Holybro_GPS_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/Holybro_GPS_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="catamaaran1/base_link/imu_sensor"/>
+
+<joint name="imu_sensor_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="catamaaran1/base_link/imu_sensor"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+
+<link name="catamaaran1/base_link/gps_sensor"/>
+
+<joint name="gps_sensor_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="catamaaran1/base_link/gps_sensor"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/> 
+</joint>
+
+<link name="433_1">
+  <inertial>
+    <origin xyz="0.13985125788235736 -0.04019022585108123 0.5419456401223488" rpy="0 0 0"/>
+    <mass value="5.785357064725417"/>
+    <inertia ixx="0.17832" iyy="0.468887" izz="0.300788" ixy="0.011303" iyz="0.01271" ixz="-0.116871"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.285 0.875 -1.1375" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/433_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/433_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-0.285 0.875 -1.1375" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/433_1.stl" scale="0.001 0.001 0.001"/>
+      <!-- <mesh filename="package://catamaaran1_description_description/meshes/433_1.stl" scale="0.001 0.001 0.001"/> -->
+    </geometry>
+  </collision>
+</link>
+
+<link name="kamera_bawah_1">
+  <inertial>
+    <origin xyz="-0.02068058930236205 0.0006665675254868553 -0.08782991496748949" rpy="0 0 0"/>
+    <mass value="6.861942588026347"/>
+    <inertia ixx="0.043167" iyy="0.023545" izz="0.033185" ixy="0.000122" iyz="-2e-06" ixz="-4e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-1.835 0.1 -1.4" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_bawah_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+    <visibility_flags>9</visibility_flags>
+  </visual>
+  <collision>
+    <origin xyz="-1.835 0.1 -1.4" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://catamaaran1_description/meshes/kamera_bawah_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="thruster_left" type="revolute">
+  <origin xyz="-1.750634 1.630515 -0.928999" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="mounting_thruster_left_1"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <limit upper="1.57" lower="-1.57" effort="1000" velocity="50"/>
+</joint>
+
+<joint name="Rigid 87" type="fixed">
+  <origin xyz="-0.021215 -0.00049 0.405" rpy="0 0 0"/>
+  <parent link="mounting_thruster_left_1"/>
+  <child link="thruster_left_1"/>
+</joint>
+
+<joint name="propeller_left" type="continuous">
+  <origin xyz="0.018938 0.001921 -0.246311" rpy="0 0 0"/>
+  <parent link="thruster_left_1"/>
+  <child link="propeller_left_1"/>
+  <axis xyz="0.999734 0.023082 -0.0"/>
+  <!-- <dynamics friction="0.05" damping="0.05" /> -->
+  <limit effort="100" velocity="100" lower="-1.57" upper="1.57"/>
+</joint>
+
+<joint name="thruster_right" type="revolute">
+  <origin xyz="-1.750634 -1.869485 -0.928999" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="mounting_thruster_right_1"/>
+  <axis xyz="0.0 0.0 -1.0"/>
+  <limit upper="1.57" lower="-1.57" effort="1000" velocity="50"/>
+</joint>
+
+<joint name="Rigid 90" type="fixed">
+  <origin xyz="0.0 0.0 0.4" rpy="0 0 0"/>
+  <parent link="mounting_thruster_right_1"/>
+  <child link="thruster_right_1"/>
+</joint>
+
+<joint name="propeller_right" type="continuous">
+  <origin xyz="-0.002277 0.001431 -0.246311" rpy="0 0 0"/>
+  <parent link="thruster_right_1"/>
+  <child link="propeller_right_1"/>
+  <axis xyz="0.999734 0.023082 -0.0"/>
+  <!-- <dynamics friction="0.05" damping="0.05" /> -->
+  <limit effort="100" velocity="100" lower="-1.57" upper="1.57"/>
+</joint>
+
+<joint name="Rigid 98" type="fixed">
+  <origin xyz="0.21 -0.1 1.275" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="radar_1"/>
+</joint>
+
+<!-- <joint name="Rigid 99" type="fixed">
+  <origin xyz="2.449366 -0.90139 0.400504" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_kanan_2"/>
+</joint>
+
+<joint name="Rigid 100" type="fixed">
+  <origin xyz="2.449366 0.69861 0.400504" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_kiri_1"/>
+</joint> -->
+
+<!-- <joint name="Rigid 101" type="fixed">
+  <origin xyz="1.380509 -0.1 1.525" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_tengah_1"/>
+</joint> -->
+
+<!-- <joint name="Rigid 103" type="fixed">
+  <origin xyz="1.185 -0.1 1.875" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="kamera_1"/>
+</joint> -->
+
+<!-- <joint name="left_camera_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="left_camera_link"/>
+  <origin xyz="1.185 -0.07 1.875" rpy="0 0 0"/>
+</joint>
+
+<joint name="right_camera_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="right_camera_link"/>
+  <origin xyz="1.185 0.07 1.875" rpy="0 0 0"/>
+</joint> -->
+
+<joint name="Rigid 104" type="fixed">
+  <origin xyz="0.6975 -0.1 1.875" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="Holybro_GPS_1"/>
+</joint>
+
+<joint name="Rigid 105" type="fixed">
+  <origin xyz="0.285 -0.875 1.1375" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="433_1"/>
+</joint>
+
+<joint name="Rigid 106" type="fixed">
+  <origin xyz="1.835 -0.1 0.9" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="kamera_bawah_1"/>
+</joint>
+
+</robot>

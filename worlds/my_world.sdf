@@ -1,0 +1,3205 @@
+<?xml version="1.0" ?>
+
+<sdf version='1.10'>
+  <world name='KKI'>
+
+    <!-- <physics name='default_physics' type='ode'></physics> -->
+    <physics name='4ms' type='dart'>
+      <max_step_size>0.0040000000000000001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <gui fullscreen='false'>
+
+      <plugin name='3D View' filename='MinimalScene'>
+        <gz-gui>
+          <title>3D View</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='string' key='state'>docked</property>
+        </gz-gui>
+
+        <engine>ogre2</engine>
+        <scene>scene</scene>
+        <ambient_light>0.4 0.4 0.4</ambient_light>
+        <background_color>0.8 0.8 0.8</background_color>
+        <camera_pose>-16.6828 0.7331 6.1366 0 0.3320 0.0805</camera_pose>
+        <!-- <camera_pose>-478.1 148.2 13.2 0 0.25 2.94</camera_pose> -->
+        <camera_clip>
+          <near>0.25</near>
+          <far>10000</far>
+        </camera_clip>
+      </plugin>
+
+      <plugin name='Entity context menu' filename='EntityContextMenuPlugin'>
+        <gz-gui>
+          <property key='state' type='string'>floating</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Scene Manager' filename='GzSceneManager'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Interactive view control' filename='InteractiveViewControl'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Camera Tracking' filename='CameraTracking'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Marker manager' filename='MarkerManager'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Select Entities' filename='SelectEntities'>
+        <gz-gui>
+          <anchors target='Select entities'>
+            <line own='right' target='right'/>
+            <line own='top' target='top'/>
+          </anchors>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Visualization Capabilities' filename='VisualizationCapabilities'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Spawn Entities' filename='Spawn'>
+        <gz-gui>
+          <anchors target='Select entities'>
+            <line own='right' target='right'/>
+            <line own='top' target='top'/>
+          </anchors>
+          <property key='resizable' type='bool'>false</property>
+          <property key='width' type='double'>5</property>
+          <property key='height' type='double'>5</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='World control' filename='WorldControl'>
+        <gz-gui>
+          <title>World control</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='bool' key='resizable'>false</property>
+          <property type='double' key='height'>72</property>
+          <property type='double' key='width'>121</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='left' target='left'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+
+        <play_pause>true</play_pause>
+        <step>true</step>
+        <start_paused>true</start_paused>
+        <use_event>true</use_event>
+
+      </plugin>
+
+      <plugin name='World stats' filename='WorldStats'>
+        <gz-gui>
+          <title>World stats</title>
+          <property type='bool' key='showTitleBar'>false</property>
+          <property type='bool' key='resizable'>false</property>
+          <property type='double' key='height'>110</property>
+          <property type='double' key='width'>290</property>
+          <property type='double' key='z'>1</property>
+          <property type='string' key='state'>floating</property>
+          <anchors target='3D View'>
+            <line own='right' target='right'/>
+            <line own='bottom' target='bottom'/>
+          </anchors>
+        </gz-gui>
+
+        <sim_time>true</sim_time>
+        <real_time>true</real_time>
+        <real_time_factor>true</real_time_factor>
+        <iterations>true</iterations>
+      </plugin>
+
+      <plugin name='Shapes' filename='Shapes'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>0</property>
+          <property key='y' type='double'>0</property>
+          <property key='width' type='double'>250</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#666666</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Lights' filename='Lights'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>250</property>
+          <property key='y' type='double'>0</property>
+          <property key='width' type='double'>150</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#666666</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Transform control' filename='TransformControl'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>0</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>250</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+        <legacy>false</legacy>
+      </plugin>
+
+      <plugin name='Screenshot' filename='Screenshot'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>250</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>50</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='VideoRecorder' filename='VideoRecorder'>
+        <gz-gui>
+          <property key='resizable' type='bool'>false</property>
+          <property key='x' type='double'>300</property>
+          <property key='y' type='double'>50</property>
+          <property key='width' type='double'>50</property>
+          <property key='height' type='double'>50</property>
+          <property key='state' type='string'>floating</property>
+          <property key='showTitleBar' type='bool'>false</property>
+          <property key='cardBackground' type='string'>#777777</property>
+        </gz-gui>
+
+        <record_video>
+          <use_sim_time>true</use_sim_time>
+          <lockstep>true</lockstep>
+          <bitrate>4000000</bitrate>
+        </record_video>
+
+        <legacy>false</legacy>
+      </plugin>
+
+      <plugin name='Component inspector' filename='ComponentInspector'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='Entity tree' filename='EntityTree'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+      </plugin>
+
+      <plugin name='View angle' filename='ViewAngle'>
+        <gz-gui>
+          <property type='string' key='state'>docked_collapsed</property>
+        </gz-gui>
+        <legacy>false</legacy>
+      </plugin>
+
+    </gui>
+
+    <plugin name='gz::sim::systems::Physics' filename='gz-sim-physics-system'>
+      <!-- <engine>
+        <filename>gz-physics-bullet-featherstone-plugin</filename>
+      </engine> -->
+    </plugin>
+    <plugin name='gz::sim::systems::UserCommands' filename='gz-sim-user-commands-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='gz-sim-sensors-system'>
+      <render_engine>ogre2</render_engine>
+      <disable_on_drained_battery>true</disable_on_drained_battery>
+    </plugin>
+    <plugin name='gz::sim::systems::Imu' filename='gz-sim-imu-system'/>
+    <plugin name='gz::sim::systems::Magnetometer' filename='gz-sim-magnetometer-system'/>
+    <plugin name='gz::sim::systems::ForceTorque' filename='gz-sim-forcetorque-system'/>
+    <plugin name='gz::sim::systems::ParticleEmitter' filename='gz-sim-particle-emitter-system'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='gz-sim-scene-broadcaster-system'/>
+    <plugin name='gz::sim::systems::Contact' filename='gz-sim-contact-system'/>
+    <plugin name='gz::sim::systems::NavSat' filename='gz-sim-navsat-system'/>
+    
+    <scene>
+      <sky/>
+      <grid>false</grid>
+      <ambient>1 1 1 1</ambient>
+      <background>0.800000012 0.800000012 0.800000012 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>-33.724223000000002</latitude_deg>
+      <longitude_deg>150.67973599999999</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
+    <plugin name='vrx::USVWind' filename='libUSVWind.so'>
+      <wind_obj>
+        <name>wamv</name>
+        <link_name>wamv/base_link</link_name>
+        <coeff_vector>.5 .5 .33</coeff_vector>
+      </wind_obj>
+      <wind_direction>240</wind_direction>
+      <wind_mean_velocity>0</wind_mean_velocity>
+      <var_wind_gain_constants>0</var_wind_gain_constants>
+      <var_wind_time_constants>2</var_wind_time_constants>
+      <random_seed>10</random_seed>
+      <update_rate>10</update_rate>
+      <topic_wind_speed>/vrx/debug/wind/speed</topic_wind_speed>
+      <topic_wind_direction>/vrx/debug/wind/direction</topic_wind_direction>
+    </plugin>
+
+    <plugin name="vrx::PublisherPlugin" filename="libPublisherPlugin.so">
+      <message type='gz.msgs.Param' topic='/vrx/wavefield/parameters' every='2.0'>params { key: "direction" value { type: DOUBLE double_value: 0.0 } } params { key: "gain" value { type: DOUBLE double_value: 0 } } params { key: "period" value { type: DOUBLE double_value: 5 } } params { key: "steepness" value { type: DOUBLE double_value: 0 } }</message>
+    </plugin>
+
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+
+    <!-- Ground Plane -->
+    <model name='ground_plane'>
+      <static>true</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10000 10000</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>10000 10000</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+            <specular>0.01 0.01 0.01 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 -10 0 0 0</pose>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+    </model>
+
+    <model name='Coast Waves'>
+      <static>true</static>
+      <link name='link'>
+        <visual name='wave_visual'>
+          <geometry>
+            <mesh>
+              <uri>model://coast_waves/meshes/waterlow.dae</uri>
+             <!-- <uri>file:///home/stephany/gazebo_maritime/src/my_boat/models/coast_waves/meshes/waterlow.dae</uri> -->
+            </mesh>
+          </geometry>
+          <plugin name='vrx::WaveVisual' filename='libWaveVisual.so'>
+            <shader>
+              <vertex>model://coast_waves/materials/programs/GerstnerWaves_vs_330.glsl</vertex>
+              <!-- <vertex>file:///home/stephany/gazebo_maritime/src/my_boat_pkg/models/coast_waves/materials/programs/GerstnerWaves_vs_330.glsl</vertex> -->
+              <fragment>model://coast_waves/materials/programs/GerstnerWaves_fs_330.glsl</fragment>
+              <!-- <fragment>file:///home/stephany/gazebo_maritime/src/my_boat_pkg/models/coast_waves/materials/programs/GerstnerWaves_fs_330.glsl</fragment> -->
+              <parameters>
+                <rescale>0.125</rescale>
+                <bumpScale>75 75</bumpScale>
+                <bumpSpeed>0.01 0.0</bumpSpeed>
+                <hdrMultiplier>0.4</hdrMultiplier>
+                <fresnelPower>5.0</fresnelPower>
+                <shallowColor>0 0.1 0.2 1.0</shallowColor>
+                <deepColor>0 0.05 0.2 1.0</deepColor>
+              </parameters>
+            </shader>
+            <wavefield>
+              <topic>/vrx/wavefield/parameters</topic>
+            </wavefield>
+          </plugin>
+
+          <visibility_flags>8</visibility_flags>
+        </visual>
+
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+      <!-- <pose>-525.03727515653043 180.83017497828064 0.5 0 0 0</pose> -->
+
+    <model name='antenna'>
+      <static>true</static>
+      <link name='base_link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>file:///home/stephany/.gz/fuel/fuel.gazebosim.org/openrobotics/models/antenna/5/meshes/antenna.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <pose>0 0 0.94999999999999996 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.34999999999999998</radius>
+              <length>1.8999999999999999</length>
+            </cylinder>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>-529.484375 145.87612915039062 1.7056808471679688 -0.068141998415630539 3.3036160569308026e-10 -0.1000000020588617</pose>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- <include>
+      <pose>400 -200 0 0 0 0 </pose>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/sydney_regatta</uri>
+    </include> -->
+
+    <!-- Floating Platform 1 - Start Area -->
+    <!-- <model name='floating_platform_1'>
+      <static>false</static>
+      <pose>8 0 0.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>2 3 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>2 3 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.6 0.4 1</ambient>
+            <diffuse>0.8 0.6 0.4 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>10</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <iyy>1</iyy>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_1">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2 3 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 2 - Gate 1 Left -->
+    <!-- <model name='floating_platform_2'>
+      <static>false</static>
+      <pose>19 6 0.5 0 0 0.3</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.5 0.3 1</ambient>
+            <diffuse>0.7 0.5 0.3 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.8</ixx>
+            <iyy>0.8</iyy>
+            <izz>0.8</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_2">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 3 - Gate 1 Right -->
+    <!-- <model name='floating_platform_3'>
+      <static>false</static>
+      <pose>19 -6 0.5 0 0 -0.3</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.6 0.4 0.2 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>8</mass>
+          <inertia>
+            <ixx>0.8</ixx>
+            <iyy>0.8</iyy>
+            <izz>0.8</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_3">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.5 2 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 4 - Gate 2 Left -->
+    <!-- <model name='floating_platform_4'>
+      <static>false</static>
+      <pose>26 8 0.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.7 0.4 1</ambient>
+            <diffuse>0.5 0.7 0.4 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.9</ixx>
+            <iyy>0.9</iyy>
+            <izz>0.9</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_4">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 5 - Gate 2 Right -->
+    <!-- <model name='floating_platform_5'>
+      <static>false</static>
+      <pose>26 -8 0.5 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.6 0.5 1</ambient>
+            <diffuse>0.4 0.6 0.5 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>9</mass>
+          <inertia>
+            <ixx>0.9</ixx>
+            <iyy>0.9</iyy>
+            <izz>0.9</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_5">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2 2.5 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 6 - Gate 3 Left -->
+    <!-- <model name='floating_platform_6'>
+      <static>false</static>
+      <pose>35 10 0.5 0 0 0.2</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.5 0.3 1</ambient>
+            <diffuse>0.8 0.5 0.3 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>8.5</mass>
+          <inertia>
+            <ixx>0.85</ixx>
+            <iyy>0.85</iyy>
+            <izz>0.85</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_6">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Platform 7 - Gate 3 Right -->
+    <!-- <model name='floating_platform_7'>
+      <static>false</static>
+      <pose>35 -10 0.5 0 0 -0.2</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.4 0.3 1</ambient>
+            <diffuse>0.7 0.4 0.3 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>8.5</mass>
+          <inertia>
+            <ixx>0.85</ixx>
+            <iyy>0.85</iyy>
+            <izz>0.85</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_platform_7">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.8 2.2 0.2</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <!-- Floating Cubes (smaller, lighter) -->
+    <!-- <model name='cube_marker_1'>
+      <static>false</static>
+      <pose>12 4 0.6 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 0.5 0 1</ambient>
+            <diffuse>1 0.5 0 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>3</mass>
+          <inertia>
+            <ixx>0.3</ixx>
+            <iyy>0.3</iyy>
+            <izz>0.3</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_cube_1">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model>
+
+    <model name='cube_marker_2'>
+      <static>false</static>
+      <pose>12 -4 0.6 0 0 0</pose>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0.8 1 1</ambient>
+            <diffuse>0 0.8 1 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <mass>3</mass>
+          <inertia>
+            <ixx>0.3</ixx>
+            <iyy>0.3</iyy>
+            <izz>0.3</izz>
+          </inertia>
+        </inertial>
+      </link>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>5.0</linear_drag>
+        <angular_drag>1.0</angular_drag>
+        <buoyancy name="buoyancy_cube_2">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.6</size>
+            </box>
+          </geometry>
+        </buoyancy>
+      </plugin>
+    </model> -->
+
+    <model name='blue_projectile'>
+      <link name='link'>
+        <inertial>
+          <mass>0.040000000000000001</mass>
+          <inertia>
+            <ixx>2.1659999999999999e-05</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>2166</iyy>
+            <iyz>0</iyz>
+            <izz>2166</izz>
+          </inertia>
+          <pose>0 0 0 0 0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <sphere>
+              <radius>0.028500000000000001</radius>
+            </sphere>
+          </geometry>
+          <surface>
+            <friction>
+              <ode/>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <sphere>
+              <radius>0.028500000000000001</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>0.317600012 0.611800015 0.835300028 1</ambient>
+            <diffuse>0.317600012 0.611800015 0.835300028 1</diffuse>
+            <specular>0.317600012 0.611800015 0.835300028 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0.056924015640831736 0 0 0</pose>
+      <plugin name='vrx::PolyhedraBuoyancyDrag' filename='libPolyhedraBuoyancyDrag.so'>
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name='collision_outer'>
+          <link_name>link</link_name>
+          <pose>0 0 -0.02 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.0285</radius>
+            </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <topic>/vrx/wavefield/parameters</topic>
+        </wavefield>
+      </plugin>
+      <static>false</static>
+      <self_collide>false</self_collide>
+    </model>
+
+    <!-- <include>
+      <name>mb_marker_buoy_red</name>
+      <pose>14.0 10 0.20 0 0 0</pose>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/mb_marker_buoy_red</uri>
+
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+              filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 -0.3 0 0 0</pose>
+          <geometry>
+            <cylinder>
+              <radius>0.325</radius>
+              <length>0.1</length>
+            </cylinder>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <topic>/vrx/wavefield/parameters</topic>
+        </wavefield>
+      </plugin>
+    </include> -->
+
+    <include>
+      <name>mb_round_red_x</name>
+      <pose>18.96 10.24 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_0</name>
+      <pose>17.21 -32.62 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_1</name>
+      <pose>29.46 13.74 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_2</name>
+      <pose>27.71 -34.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_3</name>
+      <pose>39.96 8.74 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_4</name>
+      <pose>38.21 -29.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_5</name>
+      <pose>64.46 24.24 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+    
+    <include>
+      <name>mb_round_red_6</name>
+      <pose>59.21 -49.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_7</name>
+      <pose>64.46 31.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_8</name>
+      <pose>59.21 -56.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_9</name>
+      <pose>64.46 38.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_17</name>
+      <pose>64.46 45.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_10</name>
+      <pose>59.21 -63.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_20</name>
+      <pose>59.21 -70.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/mb_marker_buoy_white</uri>
+      <name>mb_marker_buoy_white</name>
+      <pose>-523.73699951171875 148.25773620605469 0 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_11</name>
+      <pose>50.46 65.49 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_12</name>
+      <pose>34.71 68.99 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_13</name>
+      <pose>24.21 68.99 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_14</name>
+      <pose>45.21 -92.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_15</name>
+      <pose>31.21 -95.62 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_red_16</name>
+      <pose>20.71 -95.62 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <!-- <include>
+      <uri>https://fuel.gazebosim.org/1.0/german/models/Cardboard%20Box</uri>
+      <name>cardboard_box</name>
+      <pose>11.666604854656066 37.535342520422994 -9077.6574239990205 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/german/models/Cardboard%20Box</uri>
+      <name>cardboard_box_0</name>
+      <pose>8.1396783998418876 37.281565538779105 -8216.6722303991337 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include> -->
+
+    <include>
+      <name>box</name>
+      <pose>10.21 -84.12 0.5 0 0 0</pose>
+      <uri>model://box2</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>box_0</name>
+      <pose>-0.29 -77.12 0.5 0 0 0</pose>
+      <uri>model://box</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>box_1</name>
+      <pose>13.71 57.49 0.5 0 0 0</pose>
+      <uri>model://box2</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>box_2</name>
+      <pose>4.96 50.49 0.5 0 0 0</pose>
+      <uri>model://box</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>dock_red</name>
+      <pose>-3.7974600791931152 6.1194119453430176 0.52516418382041259 0 0 0</pose>
+      <uri>model://dock_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>dock_red_1</name>
+      <pose>-3.8097596168518066 7.1209301948547363 0.52660575505510999 0 0 0</pose>
+      <uri>model://dock_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>dock_red_2</name>
+      <pose>-3.79 -24.62 0.52516418382041259 0 0 0</pose>
+      <uri>model://dock_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>dock_red_3</name>
+      <pose>-3.79 -25.62 0.52660575505510999 0 0 0</pose>
+      <uri>model://dock_red</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+    
+
+    <!-- <include>
+      <uri>https://fuel.gazebosim.org/1.0/german/models/Cardboard%20Box</uri>
+      <name>cardboard_box_1</name>
+      <pose>12.992968022761019 -35.561667712976167 -5092.364335999524 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/QCforward/models/Cardboard%20Box</uri>
+      <name>cardboard_box_2</name>
+      <pose>7.8319115195275177 -34.306426983346221 -4628.2858847995776 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag" filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include> -->
+
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/openrobotics/models/mb_marker_buoy_green</uri>
+      <name>mb_marker_buoy_green</name>
+      <pose>-520.23297119140625 151.95285034179688 0 0 0 0</pose>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_x</name>
+      <pose>18.96 2.24 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <!-- <include>
+      <name>wam-v</name>
+      <pose>-515.12701416015614 181.66200256347656 0 0 0 2.7812808718458273</pose>
+      <uri>model://wam-v</uri>
+    </include> -->
+
+
+    <!-- <include>
+      <name>wam-v</name>
+      <pose>-515.12701416015614 181.66200256347656 0 0 0 2.7812808718458273</pose>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/wam-v</uri>
+
+      <plugin
+        filename="libSurface.so"
+        name="vrx::Surface">
+        <link_name>base_link</link_name>
+        <hull_length>4.9</hull_length>
+        <hull_radius>0.213</hull_radius>
+        <fluid_level>0</fluid_level>
+        <points>
+          <point>0.6 1.03 0</point>
+          <point>-1.4 1.03 0</point>
+        </points>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin> -->
+
+      <!-- Uncomment to produce buoyancy on the right hull -->
+      <!-- <plugin
+        filename="libSurface.so"
+        name="vrx::Surface">
+        <link_name>base_link</link_name>
+        <hull_length>4.9</hull_length>
+        <hull_radius>0.213</hull_radius>
+        <fluid_level>0</fluid_level>
+        <points>
+          <point>0.6 -1.03 0</point>
+          <point>-1.4 -1.03 0</point>
+        </points>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin> -->
+
+      <!-- Uncomment to enable hydrodynamics -->
+      <!-- <plugin
+        filename="gz-sim-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <link_name>base_link</link_name>
+        <xDotU>0.0</xDotU>
+        <yDotV>0.0</yDotV>
+        <nDotR>0.0</nDotR>
+        <xU>-51.3</xU>
+        <xAbsU>-72.4</xAbsU>
+        <yV>-40.0</yV>
+        <yAbsV>0.0</yAbsV>
+        <zW>-500.0</zW>
+        <kP>-50.0</kP>
+        <mQ>-50.0</mQ>
+        <nR>-400.0</nR>
+        <nAbsR>0.0</nAbsR>
+      </plugin>
+    </include> -->
+
+    <include>
+      <name>mb_round_green_1</name>
+      <pose>17.21 -24.62 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_2</name>
+      <pose>29.46 5.74 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_3</name>
+      <pose>27.71 -26.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_4</name>
+      <pose>39.96 0.74 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+    
+    <include>
+      <name>mb_round_green_5</name>
+      <pose>38.21 -21.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_6</name>
+      <pose>72.46 24.24 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_7</name>
+      <pose>67.21 -49.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_19</name>
+      <pose>67.21 -70.12 0.2007060266994368 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_8</name>
+      <pose>72.46 31.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_9</name>
+      <pose>67.21 -56.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_10</name>
+      <pose>72.46 38.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_17</name>
+      <pose>72.46 45.24 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_11</name>
+      <pose>67.21 -63.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_12</name>
+      <pose>50.46 57.49 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_13</name>
+      <pose>34.71 60.99 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_14</name>
+      <pose>24.21 60.99 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_15</name>
+      <pose>45.21 -84.12 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_16</name>
+      <pose>31.21 -87.62 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <include>
+      <name>mb_round_green_18</name>
+      <pose>20.71 -87.62 0.5 0 0 0</pose>
+      <uri>model://mb_round_buoy_green</uri>
+      <plugin name="vrx::PolyhedraBuoyancyDrag"
+        filename="libPolyhedraBuoyancyDrag.so">
+        <fluid_density>1000</fluid_density>
+        <fluid_level>0.0</fluid_level>
+        <linear_drag>25.0</linear_drag>
+        <angular_drag>2.0</angular_drag>
+        <buoyancy name="collision_outer">
+          <link_name>link</link_name>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>0.25</radius>
+          </sphere>
+          </geometry>
+        </buoyancy>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin>
+    </include>
+
+    <!-- <include>
+      <name>catamaaran</name>
+      <pose>-540.25993534879808 145.718915514379844 0.5 0 0 0</pose>
+      <uri>model://catamaaran1</uri>
+
+      <plugin
+        filename="libSurface.so"
+        name="vrx::Surface">
+        <link_name>base_link</link_name>
+        <hull_length>4.9</hull_length>
+        <hull_radius>0.213</hull_radius>
+        <fluid_level>0</fluid_level>
+        <points>
+          <point>0.6 1.03 0</point>
+          <point>-1.4 1.03 0</point>
+        </points>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin> -->
+
+      <!-- Uncomment to produce buoyancy on the right hull -->
+      <!-- <plugin
+        filename="libSurface.so"
+        name="vrx::Surface">
+        <link_name>base_link</link_name>
+        <hull_length>4.9</hull_length>
+        <hull_radius>0.213</hull_radius>
+        <fluid_level>0</fluid_level>
+        <points>
+          <point>0.6 -1.03 0</point>
+          <point>-1.4 -1.03 0</point>
+        </points>
+        <wavefield>
+          <size>1000 1000</size>
+          <cell_count>50 50</cell_count>
+          <wave>
+            <model>PMS</model>
+            <period>5.0</period>
+            <number>3</number>
+            <scale>1.1</scale>
+            <gain>0.3</gain>
+            <direction>1 0</direction>
+            <angle>0.4</angle>
+            <tau>2.0</tau>
+            <amplitude>0.0</amplitude>
+            <steepness>0.0</steepness>
+          </wave>
+        </wavefield>
+      </plugin> -->
+
+      <!-- Uncomment to enable hydrodynamics -->
+      <!-- <plugin
+        filename="gz-sim-hydrodynamics-system"
+        name="gz::sim::systems::Hydrodynamics">
+        <link_name>base_link</link_name>
+        <xDotU>0.0</xDotU>
+        <yDotV>0.0</yDotV>
+        <nDotR>0.0</nDotR>
+        <xU>-51.3</xU>
+        <xAbsU>-72.4</xAbsU>
+        <yV>-40.0</yV>
+        <yAbsV>0.0</yAbsV>
+        <zW>-500.0</zW>
+        <kP>-50.0</kP>
+        <mQ>-50.0</mQ>
+        <nR>-400.0</nR>
+        <nAbsR>0.0</nAbsR>
+      </plugin>
+    </include> -->
+
+    <light name='sun' type='directional'>
+      <pose>0 0 10 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>-0.5 0.10000000000000001 -0.90000000000000002</direction>
+      <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+      <specular>0.200000003 0.200000003 0.200000003 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <linear>0.0099999997764825821</linear>
+        <constant>0.89999997615814209</constant>
+        <quadratic>0.0010000000474974513</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
