@@ -5,7 +5,6 @@ from std_msgs.msg import Float64
 import sys, termios, tty
 
 # Key mapping
-# Key mapping yang diperbaiki
 # Format: (action, left_thrust, right_thrust, left_steer, right_steer)
 MOVE_BINDINGS = {
     'w': ('forward', 100.0, 100.0, 0.0, 0.0),    # Maju lurus
