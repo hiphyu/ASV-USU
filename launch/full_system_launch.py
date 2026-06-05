@@ -83,7 +83,7 @@ def generate_launch_description():
 
     ekf_node = Node(
         package='asv_usu',
-        executable='vo_validation_node2.py',
+        executable='ekf_node.py',
         name='ekf_node',
         output='screen',
         parameters=[{'use_sim_time': True}],
