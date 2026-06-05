@@ -7,7 +7,7 @@ find_package(ament_cmake_python REQUIRED)
 install(
   PROGRAMS
     scripts/gps_only_odom.py
-    scripts/vo_validation_node2.py
+    scripts/ekf_node.py
     scripts/evaluator_node.py
     scripts/teleop_catamaaran.py
   DESTINATION lib/${PROJECT_NAME}
