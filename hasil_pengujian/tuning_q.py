@@ -1,44 +1,30 @@
 #!/usr/bin/env python3
 """
-tuning_q_pure.py
-================
-Tuning Q untuk PURE EKF.
-
 Cara pakai:
-  python3 tuning_q_pure.py <folder_rosbag>
+  python3 tuning_q.py <folder_rosbag>
 """
 
 import sys, math
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
 from baca_bag import read_bag
 
-# ══════════════════════════════════════════════════════════════
 # Grid nilai Q
-# ══════════════════════════════════════════════════════════════
-Q_pos_vals = [5e-3, 1e-3, 5e-4]          # noise posisi  (x, y)
+Q_pos_vals = [5e-3, 1e-3, 5e-4]   # noise posisi  (x, y)
 Q_vel_vals = [5e-4, 1e-4, 5e-5]   # noise kecepatan (vx, vy)
 Q_yaw_vals = [1e-5, 5e-6, 1e-6]   # noise yaw
 
-# ── Parameter R ───────────────────────────────────────────────
+# Parameter R
 R_GPS  = np.diag([0.18, 0.18])
 R_YAW  = 0.005
 R_RATE = 0.000019
 
-# ══════════════════════════════════════════════════════════════
 # Helper
-# ══════════════════════════════════════════════════════════════
 def norm_angle(a):
     while a >  math.pi: a -= 2*math.pi
     while a < -math.pi: a += 2*math.pi
     return a
 
-# ══════════════════════════════════════════════════════════════
 # PURE EKF — satu run offline
-# ══════════════════════════════════════════════════════════════
 def run_pure_ekf(Q_diag,
                  t_imu, yaw_imu, rate_imu, ax_imu, ay_imu,
                  t_gps, x_gps, y_gps,
@@ -88,6 +74,8 @@ def run_pure_ekf(Q_diag,
         F[0,4] = (-vx*sy - vy*cy)*dt
         F[1,2] =  sy*dt;  F[1,3] =  cy*dt
         F[1,4] = ( vx*cy - vy*sy)*dt
+        F[2,2] = 0.98
+        F[3,3] = 0.98
         F[4,5] = dt
         P[:] = F @ P @ F.T + Q
 
@@ -141,9 +129,7 @@ def run_pure_ekf(Q_diag,
     )))
     return rmse, res_x, res_y, res_t
 
-# ══════════════════════════════════════════════════════════════
 # GPS-only RMSE baseline
-# ══════════════════════════════════════════════════════════════
 def rmse_gps_only(t_gps, x_gps, y_gps, t_gt, x_gt, y_gt):
     errors = []
     for i in range(len(t_gps)):
@@ -153,9 +139,7 @@ def rmse_gps_only(t_gps, x_gps, y_gps, t_gt, x_gt, y_gt):
         errors.append(math.hypot(x_gps[i]-x_gt[idx], y_gps[i]-y_gt[idx]))
     return float(np.sqrt(np.mean(np.square(errors)))) if errors else 0.0
 
-# ══════════════════════════════════════════════════════════════
 # Load data
-# ══════════════════════════════════════════════════════════════
 def load_data(bag_path):
     print(f'Membaca rosbag: {bag_path}')
     gps_xy, imu_data, gt_data = read_bag(bag_path)
@@ -177,70 +161,10 @@ def load_data(bag_path):
     return (t_imu, yaw_imu, rate_imu, ax_imu, ay_imu,
             t_gps, x_gps, y_gps, t_gt, x_gt, y_gt)
 
-# ══════════════════════════════════════════════════════════════
-# PLOT
-# ══════════════════════════════════════════════════════════════
-def plot_results(x_gt, y_gt, x_gps, y_gps, best, r_gps, all_results, bag_name):
-    fig = plt.figure(figsize=(18, 8))
-    fig.patch.set_facecolor('#0f0f1a')
-    fig.suptitle(
-        f'Tuning Q — Pure EKF  |  {bag_name}\n'
-        f'GPS-only RMSE={r_gps:.4f}m   Best EKF={best["rmse"]:.4f}m'
-        f'  ({(r_gps-best["rmse"])/r_gps*100:+.1f}%)',
-        color='white', fontsize=12, fontweight='bold', y=0.99
-    )
-    DARK='#1a1a2e'; GRID='#2a2a4a'; TXT='#e0e0e0'
-
-    def sa(ax, title, xl='', yl=''):
-        ax.set_facecolor(DARK)
-        ax.set_title(title, color=TXT, fontsize=10)
-        ax.set_xlabel(xl, color=TXT, fontsize=8)
-        ax.set_ylabel(yl, color=TXT, fontsize=8)
-        ax.tick_params(colors=TXT, labelsize=7)
-        for sp in ax.spines.values(): sp.set_edgecolor(GRID)
-        ax.grid(True, color=GRID, lw=0.5, ls='--', alpha=0.5)
-
-    gs = gridspec.GridSpec(1, 2, figure=fig,
-                           left=0.06, right=0.97,
-                           top=0.90, bottom=0.08, wspace=0.32)
-    ax_traj = fig.add_subplot(gs[0])
-    ax_bar  = fig.add_subplot(gs[1])
-
-    sa(ax_traj, 'Trajectory: GT vs Pure EKF (Q Terbaik)', 'X (m)', 'Y (m)')
-    ax_traj.plot(x_gt,  y_gt,  color='#00e5ff', lw=2.0, label='Ground Truth', zorder=4)
-    ax_traj.plot(x_gps, y_gps, color='#ff4d6d', lw=0.8, alpha=0.5,
-                 label=f'GPS-only  {r_gps:.4f}m', zorder=2)
-    ax_traj.plot(best['rx'], best['ry'], color='#a259ff', lw=1.5, ls='--', alpha=0.85,
-                 label=f'Best EKF  {best["rmse"]:.4f}m', zorder=3)
-    ax_traj.scatter(x_gt[0],  y_gt[0],  c='white',  s=80, zorder=6, marker='o')
-    ax_traj.scatter(x_gt[-1], y_gt[-1], c='#ffdd57', s=80, zorder=6, marker='X')
-    ax_traj.legend(facecolor='#252545', edgecolor=GRID, labelcolor=TXT, fontsize=8)
-    ax_traj.set_aspect('equal', adjustable='datalim')
-
-    sa(ax_bar, 'Top-10 Kombinasi Q (RMSE terkecil)', 'Kombinasi Q', 'RMSE (m)')
-    top10  = sorted(all_results, key=lambda r: r['rmse'])[:10]
-    labels = [f"pos={r['qp']:.0e}\nvel={r['qv']:.0e}\nyaw={r['qy']:.0e}" for r in top10]
-    x_idx  = np.arange(len(top10))
-    ax_bar.bar(x_idx, [r['rmse'] for r in top10], 0.5,
-               color='#a259ff', alpha=0.85, label='EKF')
-    ax_bar.axhline(r_gps, color='#ff4d6d', lw=1.2, ls='--',
-                   label=f'GPS-only {r_gps:.4f}m')
-    ax_bar.set_xticks(x_idx)
-    ax_bar.set_xticklabels(labels, fontsize=6, color=TXT)
-    ax_bar.legend(facecolor='#252545', edgecolor=GRID, labelcolor=TXT, fontsize=8)
-
-    plt.tight_layout()
-    out = f'tuning_q_pure_{bag_name}.png'
-    fig.savefig(out, dpi=150, bbox_inches='tight', facecolor=fig.get_facecolor())
-    plt.close()
-    print(f'\nPlot disimpan: {out}')
-
-# ══════════════════════════════════════════════════════════════
 # MAIN
-# ══════════════════════════════════════════════════════════════
 def main():
     if len(sys.argv) < 2:
-        print('Cara pakai: python3 tuning_q_pure.py <folder_rosbag>')
+        print('Cara pakai: python3 tuning_q.py <folder_rosbag>')
         sys.exit(1)
 
     bag_path = sys.argv[1].rstrip('/')
@@ -292,8 +216,6 @@ def main():
             f.write(f'{r["qp"]:>8.0e} {r["qv"]:>8.0e} {r["qy"]:>8.0e} {r["rmse"]:>12.4f}\n')
         f.write(f'\nBest:\n  Q    = {best["Q"]}\n  RMSE = {best["rmse"]:.4f} m\n')
     print(f'Tabel disimpan: tuning_q_pure_{bag_name}.txt')
-
-    plot_results(x_gt, y_gt, x_gps, y_gps, best, r_gps, all_results, bag_name)
 
 if __name__ == '__main__':
     main()
