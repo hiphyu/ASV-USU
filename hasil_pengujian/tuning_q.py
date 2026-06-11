@@ -10,8 +10,8 @@ from baca_bag import read_bag
 
 # Grid nilai Q
 Q_pos_vals = [5e-3, 1e-3, 5e-4]   # noise posisi  (x, y)
-Q_vel_vals = [5e-4, 1e-4, 5e-5]   # noise kecepatan (vx, vy)
-Q_yaw_vals = [1e-5, 5e-6, 1e-6]   # noise yaw
+Q_vel_vals = [5e-3, 1e-3, 5e-4]   # noise kecepatan (vx, vy)
+Q_yaw_vals = [1e-6, 5e-7, 1e-7]   # noise yaw
 
 # Parameter R
 R_GPS  = np.diag([0.18, 0.18])
@@ -74,6 +74,8 @@ def run_pure_ekf(Q_diag,
         F[0,4] = (-vx*sy - vy*cy)*dt
         F[1,2] =  sy*dt;  F[1,3] =  cy*dt
         F[1,4] = ( vx*cy - vy*sy)*dt
+        F[2,2] = 0.98
+        F[3,3] = 0.98
         F[4,5] = dt
         P[:] = F @ P @ F.T + Q
 

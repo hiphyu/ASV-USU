@@ -10,6 +10,7 @@ install(
     scripts/ekf_node.py
     scripts/evaluator_node.py
     scripts/teleop_catamaaran.py
+    scripts/imu_static_test.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

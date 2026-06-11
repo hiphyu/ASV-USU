@@ -26,8 +26,9 @@ class PureEKFNode(Node):
         self.P = np.identity(6)
 
         # Parameter Q
-        self.Q = np.diag([5e-4, 5e-4, 1e-04, 1e-04, 1e-05, 1e-05]) #Lintasan A
-        # self.Q = np.diag([1e-3, 1e-3, 1e-4, 1e-4, 5e-6, 5e-6]) #Lintasan B
+        self.Q = np.diag([1e-3, 1e-3, 1e-3, 1e-3, 5e-7, 5e-7]) #Lintasan A
+        # self.Q = np.diag([0.0005, 0.0005, 0.001, 0.001, 5e-07, 5e-07])
+        # self.Q = np.diag([1e-3, 1e-3, 1e-3, 1e-3, 1e-7, 1e-7]) #Lintasan B
 
         # Parameter R
         self.R_gps = np.diag([0.18, 0.18])
@@ -94,6 +95,7 @@ class PureEKFNode(Node):
         F = np.eye(6)
         F[0,2]=cy*dt;  F[0,3]=-sy*dt; F[0,4]=(-vx*sy-vy*cy)*dt
         F[1,2]=sy*dt;  F[1,3]= cy*dt; F[1,4]=( vx*cy-vy*sy)*dt
+        F[2,2]= 0.98;  F[3,3]= 0.98
         F[4,5]=dt
 
         self.P = F @ self.P @ F.T + self.Q

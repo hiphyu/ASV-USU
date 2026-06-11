@@ -33,6 +33,8 @@ def generate_launch_description():
             '-topic', 'robot_description',
             '-x', '-0.24099596970477125',
             '-y', '6.8790175316033544',
+            # '-x', '-0.74', #lintasanb
+            # '-y', '-25.35', #lintasanb
             '-z', '0.2',
             '-Y', '0',
         ],
@@ -89,13 +91,18 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}],
     )
 
-    evaluator_node = Node(
-        package='asv_usu',
-        executable='evaluator_node.py',
-        name='evaluator_node',
-        output='screen',
-        parameters=[{'use_sim_time': True}],
-    )
+    # evaluator_node = Node(
+    #     package='asv_usu',
+    #     executable='evaluator_node.py',
+    #     name='evaluator_node',
+    #     output='screen',
+    #     parameters=[{
+    #         'use_sim_time': True,
+    #         'lintasan':     LaunchConfiguration('lintasan'),
+    #         'run_ke':       LaunchConfiguration('run_ke'),
+    #         'rekam_rosbag': True,
+    #         }],
+    # )
 
     return LaunchDescription([
 
@@ -115,6 +122,6 @@ def generate_launch_description():
             LogInfo(msg='[T=30s] Menjalankan sensor fusion nodes...'),
             gps_only_node,
             ekf_node,
-            evaluator_node,
+            # evaluator_node,
         ]),
     ])

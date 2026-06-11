@@ -10,7 +10,7 @@ def quat_to_yaw(x, y, z, w):
     return math.atan2(siny, cosy)
 
 def read_bag(bag_path):
-    typestore = get_typestore(Stores.ROS2_HUMBLE)
+    typestore = get_typestore(Stores.ROS2_JAZZY)
     gps_data = []
     imu_data = []
     gt_data  = []

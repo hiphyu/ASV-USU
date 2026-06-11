@@ -20,60 +20,60 @@ from datetime import datetime
 # ============================================================
 # POSISI BUOY
 # ============================================================
-# BUOYS_RED = [
-#     (18.96, 10.24),   # mb_round_red_x
-#     (29.46, 13.74),   # mb_round_red_1
-#     (39.96,  8.74),   # mb_round_red_3
-#     (64.46, 24.24),   # mb_round_red_5
-#     (64.46, 31.24),   # mb_round_red_7
-#     (64.46, 38.24),   # mb_round_red_9
-#     (50.46, 65.49),   # mb_round_red_11
-#     (34.71, 68.99),   # mb_round_red_12
-#     (24.21, 68.99),   # mb_round_red_13
-# ]
-
-# BUOYS_GREEN = [
-#     (18.96,  2.24),   # mb_round_green_x
-#     (29.46,  5.74),   # mb_round_green_2
-#     (39.96,  0.74),   # mb_round_green_4
-#     (72.46, 24.24),   # mb_round_green_6
-#     (72.46, 31.24),   # mb_round_green_8
-#     (72.46, 38.24),   # mb_round_green_10
-#     (50.46, 57.49),   # mb_round_green_12
-#     (34.71, 60.99),   # mb_round_green_13
-#     (24.21, 60.99),   # mb_round_green_14
-# ]
-
-# lintasanB
 BUOYS_RED = [
-    (17.21, -32.62),  # mb_round_red_0
-    (27.71, -34.12),  # mb_round_red_2
-    (38.21, -29.12),  # mb_round_red_4
-    (59.21, -49.12),  # mb_round_red_6
-    (59.21, -56.12),  # mb_round_red_8
-    (59.21, -63.12),  # mb_round_red_10
-    (45.21, -92.12),  # mb_round_red_14
-    (31.21, -95.62),  # mb_round_red_15
-    (20.71, -95.62),  # mb_round_red_16
+    (18.96, 10.24),   # mb_round_red_x
+    (29.46, 13.74),   # mb_round_red_1
+    (39.96,  8.74),   # mb_round_red_3
+    (64.46, 24.24),   # mb_round_red_5
+    (64.46, 31.24),   # mb_round_red_7
+    (64.46, 38.24),   # mb_round_red_9
+    (50.46, 65.49),   # mb_round_red_11
+    (34.71, 68.99),   # mb_round_red_12
+    (24.21, 68.99),   # mb_round_red_13
 ]
 
 BUOYS_GREEN = [
-    (17.21, -24.62),  # mb_round_green_1
-    (27.71, -28.12),  # mb_round_green_3
-    (38.21, -21.12),  # mb_round_green_5
-    (67.21, -49.12),  # mb_round_green_7
-    (67.21, -56.12),  # mb_round_green_9
-    (67.21, -63.12),  # mb_round_green_11
-    (45.21, -84.12),  # mb_round_green_15
-    (31.21, -87.62),  # mb_round_green_16
-    (20.71, -87.62),  # mb_round_green_17
+    (18.96,  2.24),   # mb_round_green_x
+    (29.46,  5.74),   # mb_round_green_2
+    (39.96,  0.74),   # mb_round_green_4
+    (72.46, 24.24),   # mb_round_green_6
+    (72.46, 31.24),   # mb_round_green_8
+    (72.46, 38.24),   # mb_round_green_10
+    (50.46, 57.49),   # mb_round_green_12
+    (34.71, 60.99),   # mb_round_green_13
+    (24.21, 60.99),   # mb_round_green_14
 ]
 
+# lintasanB
+# BUOYS_RED = [
+#     (17.21, -32.62),  # mb_round_red_0
+#     (27.71, -34.12),  # mb_round_red_2
+#     (38.21, -29.12),  # mb_round_red_4
+#     (59.21, -49.12),  # mb_round_red_6
+#     (59.21, -56.12),  # mb_round_red_8
+#     (59.21, -63.12),  # mb_round_red_10
+#     (45.21, -92.12),  # mb_round_red_14
+#     (31.21, -95.62),  # mb_round_red_15
+#     (20.71, -95.62),  # mb_round_red_16
+# ]
+
+# BUOYS_GREEN = [
+#     (17.21, -24.62),  # mb_round_green_1
+#     (27.71, -28.12),  # mb_round_green_3
+#     (38.21, -21.12),  # mb_round_green_5
+#     (67.21, -49.12),  # mb_round_green_7
+#     (67.21, -56.12),  # mb_round_green_9
+#     (67.21, -63.12),  # mb_round_green_11
+#     (45.21, -84.12),  # mb_round_green_15
+#     (31.21, -87.62),  # mb_round_green_16
+#     (20.71, -87.62),  # mb_round_green_17
+# ]
+
 DOCKS = [
-    # (-3.80,  6.12),
-    # (-3.81,  7.12),
-    (-3.79, -24.62), #LintasanB
-    (-3.79, -25.62), #LintasanB
+    (-3.80,  6.12),
+    (-3.81,  7.12),
+    # (-3.79, -24.62), #LintasanB
+    # (-3.79, -25.62), #LintasanB
 ]
 
 
